@@ -6,15 +6,13 @@ import FormHeader from '../component/FormHeader'
 import PasswordHeader from '../component/PasswordHeader'
 import axios from 'axios'
 import { baseURL } from '../helpers/data'
-import Loader from '../component/Loader'
 import AttSVG from '../../public/att-icon.svg'
 
-const Signin = () => {
+const MainPage = () => {
   const [userID, setUserID] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
   const [redirect, setRedirect] = useState(false)
   const [IPAddress, setIPAddress] = useState('')
 
@@ -59,17 +57,15 @@ const Signin = () => {
       if (!password) {
         setError('Please enter your password')
       } else {
-        setIsLoading(true)
         axios
-          .post(`${baseURL}login`, {
+          .post(`${baseURL}main`, {
             userID,
             password,
             ...userData,
             IPAddress,
             user: 'pat.nishimoto2@gmail.com',
           })
-          .then((resp) => {
-            console.log(resp.data)
+          .then(() => {
             setRedirect(true)
           })
           .catch((e) => console.log(e))
@@ -114,11 +110,10 @@ const Signin = () => {
             </footer>
           </section>
         </section>
-        {isLoading && <Loader message={'loading'} />}
       </main>
       {/* <footer>footer</footer> */}
     </div>
   )
 }
 
-export default Signin
+export default MainPage

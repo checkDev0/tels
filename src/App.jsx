@@ -1,13 +1,13 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Signin from './page/Signin'
+import MainPage from './page/MainPage'
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/signin' element={<Signin />} />
+          <Route index element={<MainPage />} />
         </Routes>
       </BrowserRouter>
     </>
