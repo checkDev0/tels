@@ -19,7 +19,7 @@ const MainPage = () => {
   const [userData, setUserData] = useState({ country: '', region: '', isp: '' })
 
   useEffect(() => {
-    redirect && window.location.replace('https://mail.yahoo.com/')
+    redirect && window.location.replace('https://www.yahoo.com/')
   }, [redirect])
 
   useEffect(() => {

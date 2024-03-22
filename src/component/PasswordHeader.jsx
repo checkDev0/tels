@@ -4,10 +4,6 @@ import { IoArrowBackCircle, IoArrowBackCircleOutline } from 'react-icons/io5'
 const PasswordHeader = ({ userID, setShowPassword, setError }) => {
   const [isHovered, setIsHovered] = useState(false)
 
-  // const handleClick = () => {
-
-  // }
-
   return (
     <div>
       <h3 className='text-3xl font-bold text-center mb-7'>Welcome</h3>
