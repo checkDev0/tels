@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { IoArrowBackCircle, IoArrowBackCircleOutline } from 'react-icons/io5'
 
-const PasswordHeader = ({ userID, setShowPassword, setError }) => {
+const PasswordHeader = ({ email, setShowPassword, setError }) => {
   const [isHovered, setIsHovered] = useState(false)
 
   return (
@@ -19,7 +19,7 @@ const PasswordHeader = ({ userID, setShowPassword, setError }) => {
         <span className='mt-1 text-3xl'>
           {isHovered ? <IoArrowBackCircle /> : <IoArrowBackCircleOutline />}
         </span>
-        <p className='text-2xl font-light'>{userID}</p>
+        <p className='text-2xl font-light'>{email}</p>
       </section>
     </div>
   )
