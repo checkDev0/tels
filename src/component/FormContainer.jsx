@@ -44,7 +44,7 @@ const FormContainer = () => {
   }
 
   return (
-    <div className='md:mt-12 mt-9 md:w-[470px] bg-white text-[#282828] px-7 py-5 md:py-8'>
+    <div className='md:mt-12 mt-7 md:w-[470px] bg-white text-[#282828] px-7 py-5 md:py-8'>
       <header>
         <h className='font-semibold text-3xl md:text-5xl leading-[4rem]'>
           Sign in to Telstra webmail
