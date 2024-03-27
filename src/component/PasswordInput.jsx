@@ -6,6 +6,7 @@ const PasswordInput = ({
   password,
   setPassword,
   error,
+  setError,
   setShowPassword,
 }) => {
   const [show, setShow] = useState(false)
@@ -14,6 +15,7 @@ const PasswordInput = ({
   }
 
   const handleBack = () => {
+    setError('')
     setShowPassword(false)
   }
 

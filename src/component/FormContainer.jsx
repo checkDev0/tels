@@ -61,6 +61,7 @@ const FormContainer = () => {
             password={password}
             setPassword={setPassword}
             error={error}
+            setError={setError}
             setShowPassword={setShowPassword}
           />
         )}
