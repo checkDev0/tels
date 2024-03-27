@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: 'Work Sans', sans-serif;
+  font-optical-sizing: auto;
+}
+
+.form-input {
+  @apply shadow-inner border border-black hover:border-blue-500 hover:outline-4 outline-blue-500 h-[3.5rem] w-full mt-3 rounded py-4 px-3 text-lg font-medium hover:bg-[#F0F6FC];
+}
