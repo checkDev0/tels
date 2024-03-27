@@ -52,7 +52,7 @@ const FormContainer = () => {
         <p className='text-lg mt-3'>Sign in with your Telstra email address</p>
       </header>
 
-      <main className='mt-10'>
+      <main className=' mt-7 md:mt-10'>
         {!showPassword ? (
           <EmailInput email={email} setEmail={setEmail} error={error} />
         ) : (

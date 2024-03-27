@@ -16,7 +16,7 @@ const EmailInput = ({ email, setEmail, error }) => {
       <p className='text-blue-600 underline text-lg mt-4'>
         Forgot Telstra email
       </p>
-      <span className=' flex items-center gap-3 mt-16'>
+      <span className=' flex items-center gap-3 mt-10 md:mt-16'>
         <input type='checkbox' className='size-6' />
         <label className='text-lg'>Remember Telstra email</label>
       </span>
