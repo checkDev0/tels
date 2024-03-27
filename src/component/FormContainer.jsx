@@ -30,8 +30,8 @@ const FormContainer = () => {
       setShowPassword(true)
     }
 
-    if (!email) {
-      setError('Please provide a valid email')
+    if (!password) {
+      setError('Please enter your password')
       return
     }
 
